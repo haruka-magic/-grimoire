@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <title>オラクルカード キーワード検索</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f5f1e8;
+      font-family: 'Uncial Antiqua', serif;
+      color: #3e2f1c;
+      padding: 40px;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.4em;
+      text-align: center;
+      color: #5e3c27;
+      margin-bottom: 30px;
+    }
+    input[type="text"] {
+      display: block;
+      margin: 0 auto 30px auto;
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      font-size: 1em;
+      border: 1px solid #cbbfb2;
+      border-radius: 8px;
+    }
+    .keyword-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .keyword-item {
+      background-color: #e7ddd0;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .keyword-item a {
+      color: #3e2f1c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .keyword-item a:hover {
+      text-decoration: underline;
+    }
+    .back-link {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .back-link a {
+      color: #5e3c27;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>オラクルカード キーワード検索</h1>
+  <input type="text" id="searchInput" placeholder="キーワードを入力...">
+  <div class="keyword-list" id="keywordList">
+    <div class="keyword-item" data-keywords="魔法,はじまり,安心感">
+      <a href="wish_craft/wish_craft_magic_circle.html">魔法・はじまり・安心感（THE MAGIC CIRCLE - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="願い,育てる,宇宙に託す,信じる心">
+      <a href="wish_craft/wish_craft_wishing_tree.html">願い・育てる・宇宙に託す・信じる心（THE WISHING TREE - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="誇り,自信,統率力,影響力">
+      <a href="wish_craft/wish_craft_crown.html">誇り・自信・統率力・影響力（THE CROWN - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="本能,変身,憧れの力,感覚">
+      <a href="wish_craft/wish_craft_be_an_animal.html">本能・変身・憧れの力・感覚（BE AN ANIMAL - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="美しさ,喜び,表現,願い,身体">
+      <a href="wish_craft/wish_craft_dance_rainbow.html">美しさ・喜び・表現・願い・身体（DANCE THE RAINBOW - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="解き放つ,軽やかさ,信頼,手放す,美しさ">
+      <a href="wish_craft/wish_craft_bubble_power.html">解き放つ・軽やかさ・信頼・手放す・美しさ（BUBBLE POWER - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="希望,行動,積み重ね,夢の種を育てる">
+      <a href="wish_craft/wish_craft_hope_jar.html">希望・行動・積み重ね・夢の種を育てる (HOPE JAR - (WISH CRAFT ORACLE) </a>
+    </div>
+    <div class="keyword-item" data-keywords="流れに乗る,願いを重ねる,変化を受け入れる,自然とともに">
+      <a href="wish_craft/wish_craft_create_a_spiral.html">流れに乗る・願いを重ねる・変化を受け入れる・自然とともに（CREATE A SPIRAL - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="優しさ,遊び心,見えない存在への敬意,小さな喜び">
+      <a href="wish_craft/wish_craft_build_a_fairy_house.html">優しさ・遊び心・見えない存在への敬意・小さな喜び（BULD A FAIRY HOUSE - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords=" 手放し,浄化,軽くなる,癒し">
+      <a href="wish_craft/wish_craft_led_leaves_go.html"> 手放し・浄化・軽くなる・癒し（LET THE LEAVES GO - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="自己肯定,未来への贈り物,成長を楽しむ,時間を超える魔法">
+      <a href="wish_craft/wish_craft_time_capsule.html">自己肯定・未来への贈り物・成長を楽しむ・時間を超える魔法（TIME CAPSULE - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="自己受容,感謝,身体とのつながり,祝福">
+      <a href="wish_craft/wish_craft_love_your_body.html">自己受容・感謝・身体とのつながり・祝福（LOVE YOUR BODY - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="喜びを分かち合う,祝福,エネルギーを込める,愛を循環させる">
+      <a href="wish_craft/wish_craft_bake_magic_cookies.html">喜びを分かち合う・祝福・エネルギーを込める・愛を循環させる（BAKE MAGIC COOKIES - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="浄化,前進,解放,エネルギーの切り替え">
+      <a href="wish_craft/wish_craft_flying_broom.html">浄化・前進・解放・エネルギーの切り替え（FLYING BROOM - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="自己表現,解放,祝福,魂の叫び">
+      <a href="wish_craft/wish_craft_owooooooo.html">自己表現・解放・祝福・魂の叫び（OWOOOOOOOO! - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="自己受容,安心,心のよりどころ,幸せの記憶">
+      <a href="wish_craft/wish_craft_happy_poppet.html">自己受容・安心・心のよりどころ・幸せの記憶（HAPPY POPPET - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="感情の整理,保留,冷却,安心">
+      <a href="wish_craft/wish_craft_freeze_it.html">感情の整理・保留・冷却・安心（FREEZE IT - WISH CRAFT ORACLE）</a>
+    </div>
+    <div class="keyword-item" data-keywords="浄化,感謝,月の魔法,エネルギーのチャージ">
+      <a href="wish_craft/wish_craft_aqua_luna.html">浄化・感謝・月の魔法・エネルギーのチャージ（AQUA LUNA - WISH CRAFT ORACLE）</a>
+    </div>
+  </div>
+
+  <div class="back-link">
+    <a href="oracle.html">← 神託の章へ戻る</a>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const keywordList = document.getElementById("keywordList");
+    const items = keywordList.querySelectorAll(".keyword-item");
+
+    searchInput.addEventListener("input", function () {
+      const filter = searchInput.value.toLowerCase();
+      items.forEach(item => {
+        const keywords = item.getAttribute("data-keywords").toLowerCase();
+        item.style.display = keywords.includes(filter) ? "block" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
+
+
