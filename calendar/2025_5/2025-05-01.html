@@ -3,115 +3,96 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <title>2025年5月1日</title>
+  <title>2025-05-01 魔法の一日</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
+      font-family: "Arial", sans-serif;
       background-color: #f5f1e8;
-      font-family: 'Uncial Antiqua', serif;
       color: #3e2f1c;
-      padding: 20px;
+      padding: 2rem;
     }
     h1 {
-      text-align: center;
-      color: #5e3c27;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
-    .section {
-      margin-bottom: 30px;
-    }
-    label {
-      font-weight: bold;
-    }
-    textarea {
+    textarea, input[type="text"] {
       width: 100%;
-      height: 100px;
-      margin-top: 5px;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 6px;
-      margin-top: 5px;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
     button {
-      padding: 10px 20px;
-      margin-top: 20px;
-      font-size: 16px;
+      background-color: #d5c4b1;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #cbbfb2;
     }
   </style>
-  <script type="module">
-    // Firebase SDK 読み込み
-    import {{ initializeApp }} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import {{ getFirestore, doc, getDoc, setDoc }} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+</head>
+<body>
+  <h1>2025年5月1日 魔法の一日</h1>
 
-    const firebaseConfig = {{
+  <label>予定：</label>
+  <textarea id="schedule"></textarea>
+
+  <label>実際に行ったこと：</label>
+  <textarea id="actual_schedule"></textarea>
+
+  <label>今日のひとこと日記：</label>
+  <textarea id="diary"></textarea>
+
+  <label>オラクルキーワード：</label>
+  <input type="text" id="oracle_keyword">
+
+  <label>オラクル画像URL：</label>
+  <input type="text" id="oracle_image_url">
+
+  <button onclick="saveData()">保存する</button>
+
+  <p id="statusMessage"></p>
+
+  <!-- Firebase SDK (v9 CDN style) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+    const firebaseConfig = {
       apiKey: "AIzaSyB-lI2M6RzMlm9EFuxaueYUKSBgWvTUs4w",
       authDomain: "grimoire-june.firebaseapp.com",
       projectId: "grimoire-june",
-      storageBucket: "grimoire-june.appspot.com",
+      storageBucket: "grimoire-june.firebasestorage.app",
       messagingSenderId: "463377309803",
       appId: "1:463377309803:web:3950d910ae40cf2b9e112e"
-    }};
+    };
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const docRef = doc(db, "daily_pages", "2025-05-01");
 
-    async function loadData() {{
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {{
-        const data = docSnap.data();
-        document.getElementById("schedule").value = data.schedule || "";
-        document.getElementById("actual_schedule").value = data.actual_schedule || "";
-        document.getElementById("oracle_keyword").value = data.oracle_keyword || "";
-        document.getElementById("oracle_image_url").value = data.oracle_image_url || "";
-        document.getElementById("diary").value = data.diary || "";
-      }}
-    }}
-
-    async function saveData() {{
-      const data = {{
+    window.saveData = async function () {
+      const data = {
         schedule: document.getElementById("schedule").value,
         actual_schedule: document.getElementById("actual_schedule").value,
+        diary: document.getElementById("diary").value,
         oracle_keyword: document.getElementById("oracle_keyword").value,
-        oracle_image_url: document.getElementById("oracle_image_url").value,
-        diary: document.getElementById("diary").value
-      }};
-      await setDoc(docRef, data);
-      alert("保存しました！");
-    }}
+        oracle_image_url: document.getElementById("oracle_image_url").value
+      };
 
-    window.addEventListener("DOMContentLoaded", loadData);
-    window.saveData = saveData;
+      try {
+        await setDoc(doc(db, "daily_pages", "2025-05-01"), data);
+        document.getElementById("statusMessage").textContent = "保存されました ✨";
+      } catch (e) {
+        document.getElementById("statusMessage").textContent = "エラーが発生しました 😢";
+        console.error("Firestore 保存エラー:", e);
+      }
+    }
   </script>
-</head>
-<body onload=\"loadData()\">
-  <h1>2025年5月1日</h1>
-
-  <div class="section">
-    <label for="schedule">予定（バーチカル）:</label>
-    <textarea id="schedule"></textarea>
-  </div>
-
-  <div class="section">
-    <label for="actual_schedule">実際の行動（バーチカル）:</label>
-    <textarea id="actual_schedule"></textarea>
-  </div>
-
-  <div class="section">
-    <label for="oracle_keyword">本日のオラクルキーワード:</label>
-    <input type="text" id="oracle_keyword">
-  </div>
-
-  <div class="section">
-    <label for="oracle_image_url">オラクルカード画像URL:</label>
-    <input type="text" id="oracle_image_url">
-  </div>
-
-  <div class="section">
-    <label for="diary">日記:</label>
-    <textarea id="diary"></textarea>
-  </div>
-
-  <button onclick="saveData()">保存</button>
 </body>
 </html>
