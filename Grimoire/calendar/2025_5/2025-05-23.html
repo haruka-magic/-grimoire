@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta name="robots" content="noindex">
-  <meta charset="UTF-8">
-  <title>魔法の記録帳 - 2025年05月23日（Fri）</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Uncial+Antiqua&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<title>魔法の記録帳 - 2025年05月23日（Fri）</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&amp;family=Uncial+Antiqua&amp;display=swap" rel="stylesheet"/>
+<style>
     body {
       background-color: #f5f1e8;
       font-family: 'Uncial Antiqua', serif;
@@ -77,69 +77,90 @@
   </style>
 </head>
 <body>
-  <h1>2025年05月23日（Fri）</h1>
+<h1>2025年05月23日（Fri）</h1>
+<div class="section">
+<h2>予定 ＆ 実行バーチカル</h2>
+<div class="grid">
+<div>
+<h3>予定</h3>
+<div><div class="row"><span class="hour-label">7:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">8:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">9:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">10:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">11:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">12:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">13:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">14:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">15:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">16:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">17:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">18:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">19:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">20:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">21:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">22:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">23:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">0:00</span><input class="input-box" type="text"/></div></div>
+</div>
+<div>
+<h3>実行</h3>
+<div><div class="row"><span class="hour-label">7:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">8:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">9:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">10:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">11:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">12:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">13:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">14:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">15:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">16:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">17:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">18:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">19:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">20:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">21:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">22:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">23:00</span><input class="input-box" type="text"/></div>
+<div class="row"><span class="hour-label">0:00</span><input class="input-box" type="text"/></div></div>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>本日のオラクルカード</h2>
+<img alt="今日のカード" class="oracle-img" src="images/your-oracle-card.jpg"/>
+<input class="input-box" placeholder="キーワードや一言メッセージ" type="text"/>
+</div>
+<div class="section">
+<h2>今日の日記</h2>
+<textarea placeholder="気づいたこと・できたこと・感じたことなど自由に記入"></textarea>
+</div>
+<div class="back-link">
+<a href="../magic_calendar.html">← カレンダーに戻る</a>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const inputs = document.querySelectorAll("input[type='text'], textarea");
+  const dateKey = "2025-05-23";
+  inputs.forEach((input, i) => {
+    const key = dateKey + "_input_" + i;
+    input.value = localStorage.getItem(key) || "";
+    input.addEventListener("input", () => {
+      localStorage.setItem(key, input.value);
+    });
+  });
+});
+</script>
+<script type="module">
+import { saveEntry } from '../firebase_connect.js';
 
-  <div class="section">
-    <h2>予定 ＆ 実行バーチカル</h2>
-    <div class="grid">
-      <div>
-        <h3>予定</h3>
-<div><div class="row"><span class="hour-label">7:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">8:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">9:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">10:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">11:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">12:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">13:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">14:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">15:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">16:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">17:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">18:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">19:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">20:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">21:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">22:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">23:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">0:00</span><input class="input-box" type="text"></div></div>
-      </div>
-      <div>
-        <h3>実行</h3>
-<div><div class="row"><span class="hour-label">7:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">8:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">9:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">10:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">11:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">12:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">13:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">14:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">15:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">16:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">17:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">18:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">19:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">20:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">21:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">22:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">23:00</span><input class="input-box" type="text"></div>
-<div class="row"><span class="hour-label">0:00</span><input class="input-box" type="text"></div></div>
-      </div>
-    </div>
-  </div>
+document.getElementById("save-btn").addEventListener("click", () => {
+  const date = "2025-05-23";
+  const schedule = document.getElementById("schedule").value;
+  const oracle = document.getElementById("oracle").value;
+  const journal = document.getElementById("journal").value;
+  const timeline = document.getElementById("timeline").value;
 
-  <div class="section">
-    <h2>本日のオラクルカード</h2>
-    <img class="oracle-img" src="images/your-oracle-card.jpg" alt="今日のカード">
-    <input class="input-box" type="text" placeholder="キーワードや一言メッセージ">
-  </div>
-
-  <div class="section">
-    <h2>今日の日記</h2>
-    <textarea placeholder="気づいたこと・できたこと・感じたことなど自由に記入"></textarea>
-  </div>
-
-  <div class="back-link">
-    <a href="../calendar/magic_calendar.html">← カレンダーに戻る</a>
-  </div>
-</body>
+  saveEntry(date, schedule, oracle, journal, timeline);
+});
+</script></body>
 </html>
