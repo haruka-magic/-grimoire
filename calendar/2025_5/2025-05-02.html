@@ -188,5 +188,60 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 </script>
+<div style="text-align:center; margin-top:30px;"><button id="saveButton" style="padding: 10px 20px; background-color: #d5c4b1; border: none; border-radius: 6px; font-size: 1em; cursor: pointer;">保存</button></div>
+<script type="module">
+  // Firebase SDK 読み込み
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-lI2M6RzMlm9EFuxaueYUKSBgWvTUs4w",
+    authDomain: "grimoire-june.firebaseapp.com",
+    projectId: "grimoire-june",
+    storageBucket: "grimoire-june.appspot.com",
+    messagingSenderId: "463377309803",
+    appId: "1:463377309803:web:3950d910ae40cf2b9e112e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const pageId = "2025-05-02";
+  const docRef = doc(db, "daily_pages", pageId);
+
+  const scheduleField = document.getElementById("schedule");
+  const actualField = document.getElementById("actual_schedule");
+  const oracleKeywordField = document.getElementById("oracle_keyword");
+  const oracleImageField = document.getElementById("oracle_image_url");
+  const diaryField = document.getElementById("diary");
+
+  async function loadData() {
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      scheduleField.value = data.schedule || "";
+      actualField.value = data.actual_schedule || "";
+      oracleKeywordField.value = data.oracle_keyword || "";
+      oracleImageField.value = data.oracle_image_url || "";
+      diaryField.value = data.diary || "";
+    }
+  }
+
+  async function saveData() {
+    const data = {
+      schedule: scheduleField.value,
+      actual_schedule: actualField.value,
+      oracle_keyword: oracleKeywordField.value,
+      oracle_image_url: oracleImageField.value,
+      diary: diaryField.value
+    };
+    await setDoc(docRef, data);
+    alert("保存しました！");
+  }
+
+  document.getElementById("saveButton").addEventListener("click", saveData);
+  loadData();
+</script>
+
 </body>
 </html>
