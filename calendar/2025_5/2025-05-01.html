@@ -1,166 +1,115 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<title>魔法の記録帳 - 2025年05月01日（Thu）</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel&amp;family=Uncial+Antiqua&amp;display=swap" rel="stylesheet"/>
-<style>
+  <meta charset="UTF-8">
+  <title>2025年5月1日</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <style>
     body {
+      font-family: sans-serif;
       background-color: #f5f1e8;
-      font-family: 'Uncial Antiqua', serif;
+      padding: 20px;
       color: #3e2f1c;
-      padding: 30px;
-      line-height: 1.6;
-    }
-    h1, h2 {
-      font-family: 'Cinzel', serif;
-      color: #5e3c27;
     }
     h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .section {
-      margin-bottom: 40px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .hour-label {
-      font-weight: bold;
-      width: 60px;
-    }
-    .row {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 6px;
-    }
-    .input-box {
-      flex: 1;
-      padding: 6px;
-      background-color: #fffaf4;
-      border: 1px solid #cbbfb2;
-      border-radius: 6px;
-      font-size: 0.95em;
-    }
-    .oracle-img {
-      max-width: 100%;
-      height: auto;
-      display: block;
+      font-size: 1.8em;
       margin-bottom: 10px;
-      border: 1px solid #cbbfb2;
     }
-    textarea {
+    section {
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: bold;
+    }
+    textarea, input[type="text"], input[type="url"] {
       width: 100%;
-      height: 200px;
-      padding: 10px;
-      font-size: 0.95em;
-      border: 1px solid #cbbfb2;
-      background-color: #fffaf4;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #d5c4b1;
+      border: none;
+      padding: 10px 20px;
       border-radius: 6px;
-      resize: vertical;
+      font-size: 1em;
+      cursor: pointer;
     }
-    .back-link {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .back-link a {
-      color: #5e3c27;
-      text-decoration: none;
-    }
-    .back-link a:hover {
-      text-decoration: underline;
+    button:hover {
+      background-color: #cbbfb2;
     }
   </style>
 </head>
 <body>
-<h1>2025年05月01日（Thu）</h1>
-<div class="section">
-<h2>予定 ＆ 実行バーチカル</h2>
-<div class="grid">
-<div>
-<h3>予定</h3>
-<div><div class="row"><span class="hour-label">7:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">8:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">9:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">10:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">11:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">12:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">13:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">14:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">15:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">16:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">17:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">18:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">19:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">20:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">21:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">22:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">23:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">0:00</span><input class="input-box" type="text"/></div></div>
-</div>
-<div>
-<h3>実行</h3>
-<div><div class="row"><span class="hour-label">7:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">8:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">9:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">10:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">11:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">12:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">13:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">14:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">15:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">16:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">17:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">18:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">19:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">20:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">21:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">22:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">23:00</span><input class="input-box" type="text"/></div>
-<div class="row"><span class="hour-label">0:00</span><input class="input-box" type="text"/></div></div>
-</div>
-</div>
-</div>
-<div class="section">
-<h2>本日のオラクルカード</h2>
-<img alt="今日のカード" class="oracle-img" src="images/your-oracle-card.jpg"/>
-<input class="input-box" placeholder="キーワードや一言メッセージ" type="text"/>
-</div>
-<div class="section">
-<h2>今日の日記</h2>
-<textarea placeholder="気づいたこと・できたこと・感じたことなど自由に記入"></textarea>
-</div>
-<div class="back-link">
-<a href="../magic_calendar.html">← カレンダーに戻る</a>
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const inputs = document.querySelectorAll("input[type='text'], textarea");
-  const dateKey = "2025-05-01";
-  inputs.forEach((input, i) => {
-    const key = dateKey + "_input_" + i;
-    input.value = localStorage.getItem(key) || "";
-    input.addEventListener("input", () => {
-      localStorage.setItem(key, input.value);
-    });
-  });
-});
-</script>
-<script type="module">
-import { saveEntry } from '../firebase_connect.js';
+  <h1>2025年5月1日</h1>
 
-document.getElementById("save-btn").addEventListener("click", () => {
-  const date = "2025-05-01";
-  const schedule = document.getElementById("schedule").value;
-  const oracle = document.getElementById("oracle").value;
-  const journal = document.getElementById("journal").value;
-  const timeline = document.getElementById("timeline").value;
+  <section>
+    <label for="schedule">予定（バーチカル形式）</label>
+    <textarea id="schedule" rows="4" placeholder="9:00〜〇〇, 11:00〜〇〇"></textarea>
 
-  saveEntry(date, schedule, oracle, journal, timeline);
-});
-</script></body>
+    <label for="actual_schedule">実績（バーチカル形式）</label>
+    <textarea id="actual_schedule" rows="4" placeholder="実際の行動を書いてみましょう"></textarea>
+  </section>
+
+  <section>
+    <label for="oracle_keyword">本日のオラクルカード キーワード</label>
+    <input type="text" id="oracle_keyword" placeholder="キーワードを入力">
+
+    <label for="oracle_image_url">オラクルカード画像URL</label>
+    <input type="url" id="oracle_image_url" placeholder="画像のURLを入力">
+  </section>
+
+  <section>
+    <label for="diary">今日の日記</label>
+    <textarea id="diary" rows="6" placeholder="今日のできごとや感情を自由に書きましょう"></textarea>
+  </section>
+
+  <button onclick="saveData()">保存</button>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-lI2M6RzMlm9EFuxaueYUKSBgWvTUs4w",
+      authDomain: "grimoire-june.firebaseapp.com",
+      projectId: "grimoire-june",
+      storageBucket: "grimoire-june.appspot.com",
+      messagingSenderId: "463377309803",
+      appId: "1:463377309803:web:3950d910ae40cf2b9e112e"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const docId = "2025-05-01";
+
+    async function loadData() {
+      const doc = await db.collection("daily_pages").doc(docId).get();
+      if (doc.exists) {
+        const data = doc.data();
+        document.getElementById("schedule").value = data.schedule || "";
+        document.getElementById("actual_schedule").value = data.actual_schedule || "";
+        document.getElementById("oracle_keyword").value = data.oracle_keyword || "";
+        document.getElementById("oracle_image_url").value = data.oracle_image_url || "";
+        document.getElementById("diary").value = data.diary || "";
+      }
+    }
+
+    async function saveData() {
+      await db.collection("daily_pages").doc(docId).set({
+        schedule: document.getElementById("schedule").value,
+        actual_schedule: document.getElementById("actual_schedule").value,
+        oracle_keyword: document.getElementById("oracle_keyword").value,
+        oracle_image_url: document.getElementById("oracle_image_url").value,
+        diary: document.getElementById("diary").value
+      });
+      alert("保存しました！");
+    }
+
+    loadData();
+  </script>
+</body>
 </html>
