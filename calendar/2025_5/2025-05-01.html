@@ -3,75 +3,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>2025年5月1日</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f5f1e8;
-      padding: 20px;
-      color: #3e2f1c;
-    }
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 10px;
-    }
-    section {
-      margin-bottom: 30px;
-    }
-    label {
-      font-weight: bold;
-    }
-    textarea, input[type="text"], input[type="url"] {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      background-color: #d5c4b1;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 1em;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #cbbfb2;
-    }
-  </style>
-</head>
-<body>
-  <h1>2025年5月1日</h1>
+  <title>2025年5月2日</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  <section>
-    <label for="schedule">予定（バーチカル形式）</label>
-    <textarea id="schedule" rows="4" placeholder="9:00〜〇〇, 11:00〜〇〇"></textarea>
-
-    <label for="actual_schedule">実績（バーチカル形式）</label>
-    <textarea id="actual_schedule" rows="4" placeholder="実際の行動を書いてみましょう"></textarea>
-  </section>
-
-  <section>
-    <label for="oracle_keyword">本日のオラクルカード キーワード</label>
-    <input type="text" id="oracle_keyword" placeholder="キーワードを入力">
-
-    <label for="oracle_image_url">オラクルカード画像URL</label>
-    <input type="url" id="oracle_image_url" placeholder="画像のURLを入力">
-  </section>
-
-  <section>
-    <label for="diary">今日の日記</label>
-    <textarea id="diary" rows="6" placeholder="今日のできごとや感情を自由に書きましょう"></textarea>
-  </section>
-
-  <button onclick="saveData()">保存</button>
-
-  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyB-lI2M6RzMlm9EFuxaueYUKSBgWvTUs4w",
       authDomain: "grimoire-june.firebaseapp.com",
@@ -81,35 +19,133 @@
       appId: "1:463377309803:web:3950d910ae40cf2b9e112e"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-    const docId = "2025-05-01";
+    const docRef = doc(db, "daily_pages", "2025-05-02");
 
     async function loadData() {
-      const doc = await db.collection("daily_pages").doc(docId).get();
-      if (doc.exists) {
-        const data = doc.data();
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
         document.getElementById("schedule").value = data.schedule || "";
         document.getElementById("actual_schedule").value = data.actual_schedule || "";
         document.getElementById("oracle_keyword").value = data.oracle_keyword || "";
-        document.getElementById("oracle_image_url").value = data.oracle_image_url || "";
         document.getElementById("diary").value = data.diary || "";
+        document.getElementById("oracle_image_url").value = data.oracle_image_url || "";
+        document.getElementById("oracle_image").src = data.oracle_image_url || "";
       }
     }
 
     async function saveData() {
-      await db.collection("daily_pages").doc(docId).set({
+      const data = {
         schedule: document.getElementById("schedule").value,
         actual_schedule: document.getElementById("actual_schedule").value,
         oracle_keyword: document.getElementById("oracle_keyword").value,
-        oracle_image_url: document.getElementById("oracle_image_url").value,
-        diary: document.getElementById("diary").value
-      });
-      alert("保存しました！");
+        diary: document.getElementById("diary").value,
+        oracle_image_url: document.getElementById("oracle_image_url").value
+      };
+      await setDoc(docRef, data);
+      alert("保存されました！");
     }
 
-    loadData();
+    window.addEventListener("DOMContentLoaded", loadData);
+    window.saveData = saveData;
   </script>
+  <style>
+    body {
+      background-color: #fefaf5;
+      font-family: 'Uncial Antiqua', serif;
+      color: #3e2f1c;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    section {
+      margin-bottom: 1.5em;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.3em;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 0.5em;
+      border: 1px solid #cbbfb2;
+      border-radius: 6px;
+      font-family: inherit;
+      background-color: #fffdf8;
+      margin-bottom: 0.5em;
+    }
+    button {
+      background-color: #d5c4b1;
+      border: none;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+    button:hover {
+      background-color: #cbbfb2;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 0.5em;
+      display: block;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 2em;
+    }
+    .back-link a {
+      color: #3e2f1c;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>2025年5月2日 魔法の記録</h1>
+
+  <section>
+    <label for="schedule">予定（バーチカル）</label>
+    <textarea id="schedule" rows="6" placeholder="例）7:00 起床&#10;9:00〜 ヨガクラス"></textarea>
+  </section>
+
+  <section>
+    <label for="actual_schedule">実行したこと（実績）</label>
+    <textarea id="actual_schedule" rows="6" placeholder="例）9:00〜10:00 ホットヨガ"></textarea>
+  </section>
+
+  <section>
+    <label for="oracle_keyword">本日のオラクルカードのキーワード</label>
+    <input type="text" id="oracle_keyword" placeholder="例）信じる力" />
+  </section>
+
+  <section>
+    <label for="oracle_image_url">オラクルカード画像のURL</label>
+    <input type="text" id="oracle_image_url" placeholder="画像のURLを貼り付けてください" />
+    <img id="oracle_image" src="" alt="オラクルカード画像のプレビュー" />
+  </section>
+
+  <section>
+    <label for="diary">日記（今日の気づき・できたこと）</label>
+    <textarea id="diary" rows="8" placeholder="今日はこんなことがあった…"></textarea>
+  </section>
+
+  <button onclick="saveData()">保存</button>
+
+  <div class="back-link">
+    <a href="../magic_calendar.html">← メインページに戻る</a>
+  </div>
 </body>
 </html>
