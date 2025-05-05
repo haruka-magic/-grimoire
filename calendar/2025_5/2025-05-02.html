@@ -1,17 +1,90 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>2025年5月2日</title>
-  <meta name="robots" content="noindex, nofollow">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Uncial+Antiqua&display=swap" rel="stylesheet">
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  <title>魔法の一日ページ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+  <style>
+    body {
+      background-color: #f7f4ef;
+      font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif;
+      color: #4e4035;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 1.8em;
+      border-bottom: 2px dashed #c8b7a6;
+      padding-bottom: 5px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      max-width: 600px;
+      padding: 10px;
+      border: 1px solid #d6ccc2;
+      border-radius: 8px;
+      background-color: #fffdfa;
+      font-size: 1em;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #d8c3a5;
+      color: #3e2f1c;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #c3b09a;
+    }
+  </style>
+</head>
+<body>
+  <h1>2025年5月2日 魔法の記録</h1>
 
+  <div class="section">
+    <label for="schedule">🕊️ 今日の予定</label>
+    <textarea id="schedule" rows="4" placeholder="今日やりたいこと、決めごとなどを書いてください"></textarea>
+  </div>
+
+  <div class="section">
+    <label for="actual_schedule">🌙 実際の行動</label>
+    <textarea id="actual_schedule" rows="4" placeholder="実際に行ったことを振り返って書いてみましょう"></textarea>
+  </div>
+
+  <div class="section">
+    <label for="oracle_keyword">🔮 オラクルカードのキーワード</label>
+    <input type="text" id="oracle_keyword" placeholder="カードのキーワードを入力">
+  </div>
+
+  <div class="section">
+    <label for="oracle_image_url">🖼️ オラクルカードの画像URL</label>
+    <input type="text" id="oracle_image_url" placeholder="画像のURLをここに入力（https://から始まる）">
+  </div>
+
+  <div class="section">
+    <label for="diary">📖 今日の気づき・日記</label>
+    <textarea id="diary" rows="5" placeholder="今日の気持ちや出来事を自由に書いてみてください"></textarea>
+  </div>
+
+  <button onclick="saveData()">保存する📝</button>
+
+  <script>
+    // Firebase 設定
     const firebaseConfig = {
-      apiKey: "AIzaSyB-lI2M6RzMlm9EFuxaueYUKSBgWvTUs4w",
+      apiKey: "AIzaSyB-l1ZM6RzMlm9EFuxaueYUKSBgWvTUs4w",
       authDomain: "grimoire-june.firebaseapp.com",
       projectId: "grimoire-june",
       storageBucket: "grimoire-june.appspot.com",
@@ -19,133 +92,44 @@
       appId: "1:463377309803:web:3950d910ae40cf2b9e112e"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-    const docRef = doc(db, "daily_pages", "2025-05-02");
+    const docId = "2025-05-02"; // 日付ごとのドキュメントID
 
-    async function loadData() {
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        document.getElementById("schedule").value = data.schedule || "";
-        document.getElementById("actual_schedule").value = data.actual_schedule || "";
-        document.getElementById("oracle_keyword").value = data.oracle_keyword || "";
-        document.getElementById("diary").value = data.diary || "";
-        document.getElementById("oracle_image_url").value = data.oracle_image_url || "";
-        document.getElementById("oracle_image").src = data.oracle_image_url || "";
-      }
-    }
-
-    async function saveData() {
+    // データの保存
+    function saveData() {
       const data = {
         schedule: document.getElementById("schedule").value,
         actual_schedule: document.getElementById("actual_schedule").value,
         oracle_keyword: document.getElementById("oracle_keyword").value,
-        diary: document.getElementById("diary").value,
-        oracle_image_url: document.getElementById("oracle_image_url").value
+        oracle_image_url: document.getElementById("oracle_image_url").value,
+        diary: document.getElementById("diary").value
       };
-      await setDoc(docRef, data);
-      alert("保存されました！");
+
+      db.collection("daily_pages").doc(docId).set(data)
+        .then(() => {
+          alert("保存が完了しました✨");
+        })
+        .catch((error) => {
+          alert("保存に失敗しました😢: " + error);
+        });
     }
 
-    window.addEventListener("DOMContentLoaded", loadData);
-    window.saveData = saveData;
+    // データの読み込み（初期表示）
+    window.onload = function() {
+      db.collection("daily_pages").doc(docId).get()
+        .then((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+            document.getElementById("schedule").value = data.schedule || "";
+            document.getElementById("actual_schedule").value = data.actual_schedule || "";
+            document.getElementById("oracle_keyword").value = data.oracle_keyword || "";
+            document.getElementById("oracle_image_url").value = data.oracle_image_url || "";
+            document.getElementById("diary").value = data.diary || "";
+          }
+        });
+    };
   </script>
-  <style>
-    body {
-      background-color: #fefaf5;
-      font-family: 'Uncial Antiqua', serif;
-      color: #3e2f1c;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 2em;
-      text-align: center;
-      margin-bottom: 1em;
-    }
-    section {
-      margin-bottom: 1.5em;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 0.3em;
-    }
-    textarea, input[type="text"] {
-      width: 100%;
-      padding: 0.5em;
-      border: 1px solid #cbbfb2;
-      border-radius: 6px;
-      font-family: inherit;
-      background-color: #fffdf8;
-      margin-bottom: 0.5em;
-    }
-    button {
-      background-color: #d5c4b1;
-      border: none;
-      padding: 0.6em 1.2em;
-      font-size: 1em;
-      border-radius: 6px;
-      cursor: pointer;
-      display: block;
-      margin: 20px auto;
-    }
-    button:hover {
-      background-color: #cbbfb2;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 0.5em;
-      display: block;
-    }
-    .back-link {
-      text-align: center;
-      margin-top: 2em;
-    }
-    .back-link a {
-      color: #3e2f1c;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <h1>2025年5月2日 魔法の記録</h1>
-
-  <section>
-    <label for="schedule">予定（バーチカル）</label>
-    <textarea id="schedule" rows="6" placeholder="例）7:00 起床&#10;9:00〜 ヨガクラス"></textarea>
-  </section>
-
-  <section>
-    <label for="actual_schedule">実行したこと（実績）</label>
-    <textarea id="actual_schedule" rows="6" placeholder="例）9:00〜10:00 ホットヨガ"></textarea>
-  </section>
-
-  <section>
-    <label for="oracle_keyword">本日のオラクルカードのキーワード</label>
-    <input type="text" id="oracle_keyword" placeholder="例）信じる力" />
-  </section>
-
-  <section>
-    <label for="oracle_image_url">オラクルカード画像のURL</label>
-    <input type="text" id="oracle_image_url" placeholder="画像のURLを貼り付けてください" />
-    <img id="oracle_image" src="" alt="オラクルカード画像のプレビュー" />
-  </section>
-
-  <section>
-    <label for="diary">日記（今日の気づき・できたこと）</label>
-    <textarea id="diary" rows="8" placeholder="今日はこんなことがあった…"></textarea>
-  </section>
-
-  <button onclick="saveData()">保存</button>
-
-  <div class="back-link">
-    <a href="main.html">← メインページに戻る</a>
-  </div>
 </body>
 </html>
